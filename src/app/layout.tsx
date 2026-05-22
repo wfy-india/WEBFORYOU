@@ -87,7 +87,7 @@ export default function RootLayout({
   src="https://checkout.razorpay.com/v1/checkout.js"
   strategy="afterInteractive"
 />
-<Script                          {/* ← add this */}
+<Script                          
   id="register-sw"
   strategy="afterInteractive"
   dangerouslySetInnerHTML={{
