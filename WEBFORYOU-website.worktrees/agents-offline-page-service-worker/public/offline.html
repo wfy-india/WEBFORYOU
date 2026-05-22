@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>You're Offline</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+
+    .container {
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+      max-width: 500px;
+      width: 100%;
+      padding: 60px 40px;
+      text-align: center;
+    }
+
+    .offline-icon {
+      width: 80px;
+      height: 80px;
+      margin: 0 auto 30px;
+      opacity: 0.8;
+    }
+
+    h1 {
+      color: #333;
+      font-size: 28px;
+      margin-bottom: 16px;
+      font-weight: 600;
+    }
+
+    p {
+      color: #666;
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 30px;
+    }
+
+    .actions {
+      display: flex;
+      gap: 12px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    button {
+      padding: 12px 24px;
+      border: none;
+      border-radius: 6px;
+      font-size: 16px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .btn-primary {
+      background-color: #667eea;
+      color: white;
+    }
+
+    .btn-primary:hover {
+      background-color: #5568d3;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+    }
+
+    .btn-secondary {
+      background-color: #f0f0f0;
+      color: #333;
+    }
+
+    .btn-secondary:hover {
+      background-color: #e0e0e0;
+    }
+
+    .status-badge {
+      display: inline-block;
+      background-color: #fff3cd;
+      color: #856404;
+      padding: 8px 16px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 500;
+      margin-bottom: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <svg class="offline-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <circle cx="12" cy="12" r="1"></circle>
+      <path d="M5.64 5.64a9 9 0 0 0 0 12.72m12.72 0a9 9 0 0 0 0-12.72m-1.07-1.07a13.46 13.46 0 0 1 0 16.94M5.64 19.07a13.46 13.46 0 0 1 0-16.94"></path>
+      <line x1="1" y1="1" x2="23" y2="23" stroke="currentColor" stroke-width="2"></line>
+    </svg>
+
+    <div class="status-badge">No Internet Connection</div>
+
+    <h1>You're Offline</h1>
+    <p>It looks like you've lost your internet connection. Check your network settings and try again when you're back online.</p>
+
+    <div class="actions">
+      <button class="btn-primary" onclick="location.reload()">Retry</button>
+      <button class="btn-secondary" onclick="history.back()">Go Back</button>
+    </div>
+  </div>
+
+  <script>
+    // Show a toast notification when connection is restored
+    window.addEventListener('online', () => {
+      const toast = document.createElement('div');
+      toast.style.cssText = `
+        position: fixed;
+        top: 20px;
+        right: 20px;
+        background-color: #4caf50;
+        color: white;
+        padding: 16px 24px;
+        border-radius: 6px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        z-index: 9999;
+        animation: slideIn 0.3s ease;
+      `;
+      toast.textContent = '✓ You are back online!';
+      document.body.appendChild(toast);
+
+      setTimeout(() => {
+        toast.style.animation = 'slideOut 0.3s ease';
+        setTimeout(() => toast.remove(), 300);
+      }, 3000);
+    });
+
+    const style = document.createElement('style');
+    style.textContent = `
+      @keyframes slideIn {
+        from {
+          transform: translateX(100%);
+          opacity: 0;
+        }
+        to {
+          transform: translateX(0);
+          opacity: 1;
+        }
+      }
+      @keyframes slideOut {
+        from {
+          transform: translateX(0);
+          opacity: 1;
+        }
+        to {
+          transform: translateX(100%);
+          opacity: 0;
+        }
+      }
+    `;
+    document.head.appendChild(style);
+  </script>
+</body>
+</html>
