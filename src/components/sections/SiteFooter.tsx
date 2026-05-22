@@ -3,6 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
+import NotificationButton from "@/components/NotificationButton";
 
 const footerLinks = {
   Company: [
@@ -21,7 +22,6 @@ const footerLinks = {
   ],
   Legal: [
     { label: "Terms", href: "/terms" },
-
   ],
 };
 
@@ -48,6 +48,10 @@ export function SiteFooter() {
             >
               Start a project <ArrowUpRight size={14} />
             </Link>
+
+            {/* NEW: Notification button */}
+            <NotificationButton />
+
           </div>
 
           {/* Link columns */}

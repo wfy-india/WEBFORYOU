@@ -27,19 +27,37 @@ self.addEventListener('fetch', (event) => {
     event.respondWith((async () => {
       try {
         const preloadResp = await event.preloadResponse;
-
         if (preloadResp) {
           return preloadResp;
         }
-
         const networkResp = await fetch(event.request);
         return networkResp;
       } catch (error) {
-
         const cache = await caches.open(CACHE);
         const cachedResp = await cache.match(offlineFallbackPage);
         return cachedResp;
       }
     })());
   }
+});
+
+// ---- Push Notifications ----
+self.addEventListener("push", (event) => {
+  const data = event.data ? event.data.json() : {};
+  const title = data.title || "WebForYou";
+  const options = {
+    body: data.body || "You have a new notification",
+    icon: "/icons/icon-192x192.png",
+    badge: "/icons/icon-192x192.png",
+  };
+  event.waitUntil(
+    self.registration.showNotification(title, options)
+  );
+});
+
+self.addEventListener("notificationclick", (event) => {
+  event.notification.close();
+  event.waitUntil(
+    clients.openWindow("https://www.wfy.co.in")
+  );
 });
