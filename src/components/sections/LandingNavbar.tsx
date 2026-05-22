@@ -7,7 +7,7 @@ import { useState } from "react";
 const navLinks = ["Home", "Services", "Pricing", "Work", "Client Portal"];
 
 export function LandingNavbar() {
-  const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false); 
 
   return (
     <>
