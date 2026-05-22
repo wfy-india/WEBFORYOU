@@ -29,7 +29,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "WebForYou | AI-Powered Web Design Agency",
+  title: "WebForYou | AI-Powered Web Design Agency",manifest: "/manifest.json",
   description:
     "Stunning design. Blazing performance. Built by AI, refined by experts. WebForYou delivers world-class websites in days, not months.",
   keywords: [
