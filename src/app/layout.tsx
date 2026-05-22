@@ -84,9 +84,22 @@ export default function RootLayout({
         <RouteProgress />
         {children}
         <Script
-          src="https://checkout.razorpay.com/v1/checkout.js"
-          strategy="afterInteractive"
-        />
+  src="https://checkout.razorpay.com/v1/checkout.js"
+  strategy="afterInteractive"
+/>
+<Script                          {/* ← add this */}
+  id="register-sw"
+  strategy="afterInteractive"
+  dangerouslySetInnerHTML={{
+    __html: `
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', function() {
+          navigator.serviceWorker.register('/service-worker.js');
+        });
+      }
+    `,
+  }}
+/>
         <VisualEditsMessenger />
       </body>
     </html>
