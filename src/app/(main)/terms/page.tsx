@@ -97,6 +97,7 @@ export default function TermsPage() {
             <h2 className="text-2xl font-bold text-foreground mb-4">8. Limitation of Liability</h2>
             <p className="mb-4">WebForYou is not liable for:</p>
             <ul className="list-disc pl-6 space-y-2">
+              <li>We are not responsible for any activity conducted on website after it is delivered and we dont hold any ownership or relationship with the website in terms of activity.</li>
               <li>Business losses, revenue loss, or indirect damages</li>
               <li>Website downtime caused by hosting providers, third-party services, or misuse</li>
               <li>Issues arising after project handover due to unauthorized modifications</li>
